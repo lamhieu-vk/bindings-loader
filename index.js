@@ -1,5 +1,6 @@
 const path = require("path");
 const vm = require("vm");
+const fs = require("fs");
 const { promisify } = require("util");
 
 const { getOptions } = require("loader-utils");
@@ -22,7 +23,8 @@ module.exports = function(source, map, meta) {
   const options = getOptions(this) || {};
 
   const resolve = promisify(this.resolve).bind(this, this.context);
-  const readFile = promisify(this.fs.readFile).bind(this.fs);
+  const exists = promisify(fs.exists).bind(fs);
+  const copy = promisify(fs.copyFile).bind(fs);
 
   const callback = this.async();
 
@@ -49,8 +51,11 @@ module.exports = function(source, map, meta) {
 
       const addonPath = bindings(arg);
       const addonRequest = `./${path.basename(addonPath)}`;
-      const addonContent = await readFile(addonPath);
-      this.emitFile(addonRequest, addonContent);
+      const addonOutput = path.resolve(arg.module_root, addonRequest)
+
+      if (!exists(addonOutput)) {
+        await copy(addonPath, addonOutput);
+      }
 
       replaceSource.replace(
         match.index,
