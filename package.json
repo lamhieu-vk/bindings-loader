@@ -1,6 +1,6 @@
 {
   "name": "hard-bindings-loader",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Webpack loader for node addons using 'bindings' module to load.",
   "license": "MIT",
   "repository": "lamhieu-vk/hard-bindings-loader",

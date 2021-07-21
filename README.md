@@ -1,4 +1,4 @@
-# `bindings-loader`
+# `hard-bindings-loader`
 
 A webpack loader for node addon modules that handles the recommended
 `require("bindings")("myaddon.node")` pattern.
@@ -27,8 +27,8 @@ module.exports = {
       // ...
       // Rewrites and emits
       {
-        test: /\.js$/,
-        loader: "bindings-loader",
+        test: /\.m?js$/,
+        loader: "hard-bindings-loader",
       },
     ],
   },
