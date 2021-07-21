@@ -1,9 +1,9 @@
 {
-  "name": "bindings-loader",
-  "version": "0.1.0",
+  "name": "hard-bindings-loader",
+  "version": "0.2.0",
   "description": "Webpack loader for node addons using 'bindings' module to load.",
   "license": "MIT",
-  "repository": "simonbuchan/bindings-loader",
+  "repository": "lamhieu-vk/hard-bindings-loader",
   "main": "index.js",
   "dependencies": {
     "loader-utils": "^1.1.0",
